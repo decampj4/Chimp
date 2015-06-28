@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility=1.8
+targetCompatibility=1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies{
+	
+}
+
+version = ''
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Caesar',
+                   'Implementation-Version': version,
+                   'Main-Class': 'com.caesar.main.TCPServer'
+    }
+}

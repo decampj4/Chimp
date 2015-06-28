@@ -33,8 +33,8 @@ dependencies{
 	testCompile("junit:junit")
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	providedCompile("javax.servlet:javax.servlet-api:3.1.0")
-	compile("org.springframework:spring-websocket:4.0.1.RELEASE")
-	compile("org.springframework:spring-messaging:4.0.1.RELEASE")
+	compile("org.springframework:spring-websocket:4.1.6.RELEASE")
+	compile("org.springframework:spring-messaging:4.1.6.RELEASE")
 }
 
 version = ''
@@ -57,7 +57,7 @@ task deleteOldWars(type:Delete, dependsOn: ['deleteWork']){
     delete "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps/chimp", "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps/chimp.war" 
 }
 
-task deploy(type: Copy, dependsOn: [build, deleteOldWars]){
+task deploy(type: Copy, dependsOn: [war, deleteOldWars]){
     from "/Users/justindecamp/Documents/Dev/Chimp/API/build/libs/chimp.war"
     into "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps"
 }
