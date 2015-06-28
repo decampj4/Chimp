@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+war {
+    baseName = 'chimp'
+}
+
+configurations {
+    providedRuntime
+}
+
+sourceCompatibility=1.8
+targetCompatibility=1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies{
+	compile("org.springframework.boot:spring-boot-starter-web")
+	testCompile("junit:junit")
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+
+version = '0.1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Chimp',
+                   'Implementation-Version': version
+    }
+}
+
+task wrapper(type: Wrapper){
+	gradleVersion= '2.3'
+}
