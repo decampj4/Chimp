@@ -37,7 +37,7 @@ dependencies{
 	compile("org.springframework:spring-messaging:4.0.1.RELEASE")
 }
 
-version = '0.1.0'
+version = ''
 jar {
     manifest {
         attributes 'Implementation-Title': 'Chimp',
@@ -47,4 +47,17 @@ jar {
 
 task wrapper(type: Wrapper){
 	gradleVersion= '2.3'
+}
+
+task deleteWork(type:Delete){
+    delete "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/work"
+}
+
+task deleteOldWars(type:Delete, dependsOn: ['deleteWork']){
+    delete "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps/chimp", "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps/chimp.war" 
+}
+
+task deploy(type: Copy, dependsOn: [build, deleteOldWars]){
+    from "/Users/justindecamp/Documents/Dev/Chimp/API/build/libs/chimp.war"
+    into "/Users/justindecamp/Documents/Dev/Apache/apache-tomcat-8.0.23-chimp/webapps"
 }
