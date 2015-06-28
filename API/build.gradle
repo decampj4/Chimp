@@ -32,6 +32,9 @@ dependencies{
 	compile("org.springframework.boot:spring-boot-starter-web")
 	testCompile("junit:junit")
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+	compile("org.springframework:spring-websocket:4.0.1.RELEASE")
+	compile("org.springframework:spring-messaging:4.0.1.RELEASE")
 }
 
 version = '0.1.0'
