@@ -9,7 +9,9 @@ repositories {
 }
 
 dependencies{
-	
+    testCompile("junit:junit:4.12")
+    compile("org.json:json:20141113")
+    compile("org.apache.commons:commons-lang3:3.0")
 }
 
 version = ''

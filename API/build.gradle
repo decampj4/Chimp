@@ -35,6 +35,8 @@ dependencies{
 	providedCompile("javax.servlet:javax.servlet-api:3.1.0")
 	compile("org.springframework:spring-websocket:4.1.6.RELEASE")
 	compile("org.springframework:spring-messaging:4.1.6.RELEASE")
+    compile("org.json:json:20141113")
+    compile("org.apache.commons:commons-lang3:3.0")
 }
 
 version = ''

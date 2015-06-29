@@ -3,14 +3,10 @@ package com.caesar.junit;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.web.socket.WebSocketSession;
 
-public class TCPTests {
-	 private static WebSocketSession wsSession = null;
-	 
+public class TCPServerTests {
 	@BeforeClass
 	public static void testSetup(){
-	
 	}
 	
 	@AfterClass
@@ -20,6 +16,5 @@ public class TCPTests {
 	
 	@Test
 	public void loginTest(){
-		
 	}
 }

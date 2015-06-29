@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="wsApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,36 @@
         <!-- SockJS -->
         <script src="//cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
 
-        <!-- index.js-->
-        <script src="index.js"></script>
+        <!-- Angular scripts -->
+        <script src="js/wsApp.js"></script>
+        <script src="js/wsAppController.js"></script>
     </head>
+    <body>
+        <h1>Chimp Chat App</h1>
+        <div data-ng-controller="wsAppController">
+            <div>
+                <label>Username:</label>
+                <input type="text" data-ng-model="username" placeholder="Enter your username here"></input>
+            </div>
+            <div>
+                <label>Chat with:</label>
+                <input type="text" data-ng-model="targetUsername" placeholder="Enter the username of the person you'd like to chat with here"></input>
+            </div>
+            <button type="button" data-ng-disabled="username==='' || targetUsername===''" ng-click="beginChat()">Begin Chat</button>
+            <div data-ng-show="authenticated">
+                <h2>Chat Stream</h2>
+                <ul>
+                    <li data-ng-repeat="wsMessage in wsMessages">Message: {{wsMessage.message}} | From: {{wsMessage.from}} | To: {{wsMessage.to}}</li>
+                </ul>
+
+
+
+                <label>Send message</label>
+                <input type="text" data-ng-model="messageToSend" placeholder="Enter your message here"></input>
+                <button type="button" data-ng-disabled="!authenticated" ng-click="sendMessage()">Send Message</button>
+
+
+            </div>
+        </div>
+    </body>
 </html>
