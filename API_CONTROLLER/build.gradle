@@ -12,13 +12,20 @@ dependencies{
     testCompile("junit:junit:4.12")
     compile("org.json:json:20141113")
     compile("org.apache.commons:commons-lang3:3.0")
+    compile("commons-io:commons-io:2.4")
 }
 
 version = ''
-jar {
+
+//create a single Jar with all dependencies
+//from mkyong's example here : http://www.mkyong.com/gradle/gradle-create-a-jar-file-with-dependencies/
+task fatJar(type: Jar) {
     manifest {
-        attributes 'Implementation-Title': 'Caesar',
-                   'Implementation-Version': version,
-                   'Main-Class': 'com.caesar.main.TCPServer'
+        attributes 'Implementation-Title': 'Caesar',  
+            'Implementation-Version': version,
+            'Main-Class': 'com.caesar.main.TCPServer'
     }
+    baseName = 'caesar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

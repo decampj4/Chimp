@@ -18,8 +18,11 @@ wsApp.controller("wsAppController", function ($scope) {
       var jsonObj = JSON.parse(data);
       if (jsonObj.authenticated) {
         $scope.authenticated = true;
-        $scope.$apply();
       }
+      if (jsonObj.to) {
+        $scope.wsMessages.push({"message" : jsonObj.message, "from": jsonObj.from, "to": jsonObj.to});
+      }
+      $scope.$apply();
     };
     $scope.sock.onclose = function () {
       console.log('close');
@@ -27,8 +30,7 @@ wsApp.controller("wsAppController", function ($scope) {
   };
 
   $scope.sendMessage = function () {
-    $scope.wsMessages.push({"message" : $scope.messageToSend, "from": $scope.username, "to": $scope.targetUsername});
-    $scope.sock.send("{'message': '" + $scope.messageToSend + "', 'to': '" + $scope.targetUsername + "'}");
+    $scope.sock.send("{\"message\": \"" + $scope.messageToSend + "\", \"to\": \"" + $scope.targetUsername + "\"}");
   };
 
 });
