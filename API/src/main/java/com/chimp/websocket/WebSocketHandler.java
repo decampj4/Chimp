@@ -210,7 +210,8 @@ public class WebSocketHandler extends TextWebSocketHandler{
 						distributeMessageFromCaesar(fromUsername, messageFromCaesar);
 					}
 				} catch (Exception e) {
-					throw new RuntimeException("Error reading from socket connection to Caesar", e);
+					System.err.println("Error reading from socket connection to Caesar");
+					e.printStackTrace();
 				}
 			}
 		}
